@@ -2,15 +2,12 @@ document.addEventListener('DOMContentLoaded', function () {
     var itemsContainer = document.querySelector('.cart-items-list');
     var totalElement = document.querySelector('.cart-total');
 
-
     if (!itemsContainer || !totalElement) {
         return;
     }
 
-
     var cart = [];
     var stored = localStorage.getItem('cart');
-
 
     if (stored) {
         try {
@@ -20,17 +17,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-
     if (!cart || cart.length === 0) {
         itemsContainer.textContent = 'У кошику ще немає товарів';
         totalElement.textContent = '0';
         return;
     }
 
-
     itemsContainer.innerHTML = '';
     var total = 0;
-
 
     for (var i = 0; i < cart.length; i++) {
         var item = cart[i];
@@ -39,10 +33,8 @@ document.addEventListener('DOMContentLoaded', function () {
         var itemTotal = itemPrice * itemQty;
         total += itemTotal;
 
-
         var wrapper = document.createElement('div');
         wrapper.className = 'cart-item d-flex align-items-center justify-content-between py-3 border-bottom';
-
 
         var imgHtml = '';
         if (item.image) {
@@ -50,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 '<img src="' + item.image + '" alt="' + (item.name || '') +
                 '" class="me-3 cart-item-image" width="80">';
         }
-
 
         wrapper.innerHTML =
             '<div class="d-flex align-items-center">' +
@@ -67,16 +58,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     'data-id="' + item.id + '">Видалити</button>' +
             '</div>';
 
-
         itemsContainer.appendChild(wrapper);
     }
 
-
     totalElement.textContent = total.toFixed(2);
 
-
     var removeButtons = itemsContainer.querySelectorAll('.cart-item-remove');
-
 
     for (var j = 0; j < removeButtons.length; j++) {
         removeButtons[j].addEventListener('click', function () {
@@ -84,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function () {
             removeFromCart(id);
         });
     }
-
 
     function removeFromCart(id) {
         for (var k = 0; k < cart.length; k++) {
@@ -97,3 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
         location.reload();
     }
 });
+var cartSection = document.querySelector('.cart');
+if (cartSection) {
+    cartSection.style.opacity = '1';
+}

@@ -315,6 +315,9 @@ input:checked+label .round {
     }
 }
 
+footer{
+    padding: 80px 0;
+}
 
 .love-heart {
     box-sizing: border-box;
